@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # toma lo que hay en nuestro repositorio
+    # toma lo que hay en nuestro repositorio 
     - name: Checkout code
       uses: actions/checkout@v4
       with:
