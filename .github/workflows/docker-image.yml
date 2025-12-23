@@ -20,19 +20,19 @@ jobs:
         # para que valla mas adentro en la busqieda de nuestro historial de commits
         fetch-depth: 0
     
-    # - name: Log in to Docker Hub
-      # # uses: docker/login-action@v3
-      # with:
-      #   username: ${{ secrets.DOCKER_USER }}
-      #   password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Docker login
-      env:
-        DOCKER_USER: ${{ secrets.DOCKER_USER }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USER }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    # - name: Docker login
+    #   env:
+    #     DOCKER_USER: ${{ secrets.DOCKER_USER }}
+    #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         # el | significa que son lineas independientes que vamos a ingresar manualmente en la consola
-      run: |
-        echo "Iniciando Login"
-        docker login -u DOCKER_USER -p DOCKER_PASSWORD
-        echo "fin del Login"
+      # run: |
+      #   echo "Iniciando Login"
+      #   docker login -u DOCKER_USER -p DOCKER_PASSWORD
+      #   echo "fin del Login"
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
