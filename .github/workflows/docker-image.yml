@@ -36,7 +36,7 @@ jobs:
       #   echo "fin del Login"
     - name: Build Docker Image
       run: |
-        docker container run -p 3000:3000 cezzsa/docker-graphql:0.0.2 .
+        docker build -t cezzsa/docker-graphql:0.0.2 .
       #   echo "fin del Login"
     - name: Push Docker Image
       run: |
