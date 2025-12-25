@@ -37,9 +37,12 @@ jobs:
     - name: Build Docker Image
       run: |
         docker build -t cezzsa/docker-graphql:0.0.2 .
+        docker build -t cezzsa/docker-graphql:latest .
+      # toma el cache del primer build para hacer el latest
       #   echo "fin del Login"
     - name: Push Docker Image
       run: |
         docker push cezzsa/docker-graphql:0.0.2
+        docker push cezzsa/docker-graphql:latest
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
