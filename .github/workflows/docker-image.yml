@@ -37,8 +37,8 @@ jobs:
 
     - name: Debug Version
       run: |
-        run: echo "new vercion: $NEW_VERSION" 
-# echo "La nueva versión es: ${{ steps.version.outputs.version }}"
+        echo "La nueva versión es: ${{ steps.version.outputs.version }}"
+      # run: echo "new vercion: $NEW_VERSION" 
     # - name: Docker login
     #   env:
     #     DOCKER_USER: ${{ secrets.DOCKER_USER }}
