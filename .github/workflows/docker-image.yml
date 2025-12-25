@@ -32,31 +32,26 @@ jobs:
       with:
         username: ${{ secrets.DOCKER_USER }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-      env:
-        NEW_VERSION: ${{ steps.version.outputs.version }}
+        
 
     - name: Debug Version
       run: |
         echo "La nueva versión es: ${{ steps.version.outputs.version }}"
       # run: echo "new vercion: $NEW_VERSION" 
-    # - name: Docker login
-    #   env:
-    #     DOCKER_USER: ${{ secrets.DOCKER_USER }}
-    #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        # el | significa que son lineas independientes que vamos a ingresar manualmente en la consola
-      # run: |
-      #   echo "Iniciando Login"
-      #   docker login -u DOCKER_USER -p DOCKER_PASSWORD
-    #   #   echo "fin del Login"
-    # - name: Build Docker Image
-    #   run: |
-    #     docker build -t cezzsa/docker-graphql:0.0.2 .
-    #     docker build -t cezzsa/docker-graphql:latest .
+
+    - name: Build Docker Image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker build -t cezzsa/docker-graphql:$NEW_VERSION .
+        docker build -t cezzsa/docker-graphql:latest .
       # toma el cache del primer build para hacer el latest
-      #   echo "fin del Login"
-    # - name: Push Docker Image
-    #   run: |
-    #     docker push cezzsa/docker-graphql:0.0.2
-    #     docker push cezzsa/docker-graphql:latest
+
+    - name: Push Docker Image
+      env:
+        NEW_VERSION: ${{ steps.version.outputs.version }}
+      run: |
+        docker push cezzsa/docker-graphql:$NEW_VERSION
+        docker push cezzsa/docker-graphql:latest
     # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
